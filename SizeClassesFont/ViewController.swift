@@ -10,16 +10,24 @@ import UIKit
 
 class ViewController: UIViewController {
 
-  override func viewDidLoad() {
-    super.viewDidLoad()
-    // Do any additional setup after loading the view, typically from a nib.
+  override func loadView() {
+    view = View()
   }
-
-  override func didReceiveMemoryWarning() {
-    super.didReceiveMemoryWarning()
-    // Dispose of any resources that can be recreated.
+  
+  var contentView: View { return view as! View }
+  
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+    
+    switch traitCollection.horizontalSizeClass {
+    case .Compact:
+      contentView.label.font = UIFont.systemFontOfSize(15)
+    case .Regular:
+      contentView.label.font = UIFont.systemFontOfSize(80)
+    default:
+      contentView.label.font = UIFont.systemFontOfSize(15)
+    }
   }
-
 
 }
 
